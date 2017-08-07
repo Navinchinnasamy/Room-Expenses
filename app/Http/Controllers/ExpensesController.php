@@ -62,6 +62,11 @@ class ExpensesController extends Controller
     public function store(Request $request)
     {
         //
+		$this->validate($request, [
+			'description' => 'required',
+			'amount' => 'required'
+		]);
+		
 		$desc = $request->input('description');
 		$amt = $request->input('amount');
 		$purchased_at = $request->input('purchased_at');
@@ -73,6 +78,8 @@ class ExpensesController extends Controller
 		$exp->purchased_at = $request->input('purchased_at');
 		$exp->purchased_by = $request->input('purchased_by');
 		$exp->save();
+		
+		return redirect()->route('expense.index')->with('success', 'Entry created successfully');
     }
 
     /**

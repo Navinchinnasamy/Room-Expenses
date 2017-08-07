@@ -8,90 +8,84 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Navin') }}</title>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('plugins/bootstrap/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('plugins/material/material.indigo-pink.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('plugins/material/material-icon.css') }}" rel="stylesheet">
 
     <!-- Scripts -->
 	<script src="{{ asset('plugins/jquery.min.js') }}"></script>
 	<script src="{{ asset('plugins/bootstrap/bootstrap.min.js') }}"></script>
+	<script src="{{ asset('plugins/material/material.min.js') }}"></script>
     <script>
         window.Laravel = {!! json_encode([
             'csrfToken' => csrf_token(),
         ]) !!};
     </script>
+	<style>
+		.container {
+			margin-top: 6%;
+		}
+	</style>
 </head>
-<body>
+<body> 
     <div id="app">
-        <nav class="navbar navbar-default navbar-static-top">
-            <div class="container">
-                <div class="navbar-header">
-
-                    <!-- Collapsed Hamburger -->
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
-                        <span class="sr-only">Toggle Navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-
-                    <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
-                    </a>
-                </div>
-
-                <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="nav navbar-nav">
-                        &nbsp;
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="nav navbar-nav navbar-right">
-                        <!-- Authentication Links -->
-                        @if (Auth::guest())
-                            <li><a href="{{ route('login') }}">Login</a></li>
-                            <li><a href="{{ route('register') }}">Register</a></li>
-                        @else
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
-
-                                <ul class="dropdown-menu" role="menu">
-                                    <li>
-                                        <a href="{{ route('logout') }}"
-                                            onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                            Logout
-                                        </a>
-
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                            {{ csrf_field() }}
-                                        </form>
-                                    </li>
-                                </ul>
-                            </li>
-                        @endif
-                    </ul>
-                </div>
-            </div>
-        </nav>
-
-		@if (!Auth::guest())
-			<div id="mySidenav" class="sidenav">
-			  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-			  <a href="#">About</a>
-			  <a href="#">Services</a>
-			  <a href="#">Clients</a>
-			  <a href="#">Contact</a>
+		<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+		  <header class="mdl-layout__header">
+			 <div class="mdl-layout__header-row">
+				<!-- Title -->
+				<span class="mdl-layout-title">{{ config('app.name', 'Room-Expense') }}</span>
+				<!-- Add spacer, to align navigation to the right -->
+				<div class="mdl-layout-spacer"></div>
+				<!-- Navigation -->
+				<nav class="mdl-navigation">
+					@if (Auth::guest())
+						<a class="mdl-navigation__link" href="{{ route('login') }}" style="color:gray">Login</a>
+						<a class="mdl-navigation__link" href="{{ route('register') }}" style="color:gray">Register</a>   
+					@else
+						<a class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+								{{ Auth::user()->name }} <span class="caret"></span>
+							</a>
+							<ul class="dropdown-menu" role="menu">
+								<li>
+									<a href="{{ route('logout') }}"
+										onclick="event.preventDefault();
+												 document.getElementById('logout-form').submit();">
+										Logout
+									</a>
+									<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+										{{ csrf_field() }}
+									</form>
+								</li>
+							</ul>
+						</a>
+						<a class="mdl-navigation__link" href="javascript:void(0);" style="color:gray">{{ Auth::user()->name }}</a>
+						<a class="mdl-navigation__link" href="{{ route('expense.index') }}" style="color:gray">Expense</a>   
+						<a class="mdl-navigation__link" href="{{ route('expense.create') }}" style="color:gray">Expense Add</a>   
+					@endif
+				</nav>
+			 </div>
+		  </header>
+		  @if (!Auth::guest())
+		  <div class="mdl-layout__drawer">
+			 <span class="mdl-layout-title">{{ config('app.name', 'Room-Expense') }}</span>
+			 <nav class="mdl-navigation">
+				<a class="mdl-navigation__link" href="{{ route('home') }}">Home</a>
+				<a class="mdl-navigation__link" href="{{ route('expense.index') }}">Expense</a>    
+				<a class="mdl-navigation__link" href="{{ route('expense.create') }}">Expense Add</a>    
+			 </nav>
+		  </div>
+		  @endif
+		</div>
+		<main class="mdl-layout__content">
+			<div class="page-content">
+				@yield('content')
 			</div>
-		@endif
-		
-        @yield('content')
+		</main>
     </div>
 
     <!-- Scripts -->

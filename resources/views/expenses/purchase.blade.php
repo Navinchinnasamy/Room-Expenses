@@ -8,9 +8,21 @@
                 <div class="panel-heading">Purchase</div>
 
                 <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ route('expense.store') }}">
+					@if (count($errors) > 0)
+						<div class="alert alert-danger">
+							<strong>Whoops!</strong> There were some problems with your input. <br/><br/>
+							<ul>
+								$foreach ($errors->all() as $error)
+									<li>{{ $error }}</li>
+								$endforeach
+							</ul>
+						</div>
+					@endif
+					
+					{!! Form::open(array('route' => 'expense.store', 'method' => 'POST')) !!}
+                    <!-- <form class="form-horizontal" role="form" method="POST" action="{{ route('expense.store') }}"> -->
 						{{ csrf_field() }}
-						<input type="hidden" name="purchased_by" id="purchased_by" value="{{$data['id']}}" />
+						<input type="hidden" name="purchased_by" id="purchased_by" value="{{ $data['id'] }}" />
 						<div class="form-group{{ $errors->has('description') ? ' has-error' : '' }}">
                             <label for="description" class="col-md-4 control-label">Description</label>
                             <div class="col-md-6">
@@ -51,7 +63,8 @@
                                 </button>
                             </div>
                         </div>
-					</form>
+					<!-- </form> -->
+					{!! Form::close() !!}
                 </div>
             </div>
         </div>

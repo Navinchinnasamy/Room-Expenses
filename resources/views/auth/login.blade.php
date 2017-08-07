@@ -1,68 +1,79 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<html lang="{{ config('app.locale') }}">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- CSRF Token -->
+		<meta name="csrf-token" content="{{ csrf_token() }}">
+        <title>Room Expenses: Login</title>
+        <link rel="stylesheet" href="{{ asset('css/login/login_material.css') }}">
+		  <script>
+			window.Laravel = {!! json_encode([
+				'csrfToken' => csrf_token(),
+			]) !!};
+		</script>
+	</head>
+	<body>
+    {{--<form class="form-horizontal" role="form" method="POST" action="{{ route('login') }}">--}}
+		  {{ csrf_field() }}
+    <div class="materialContainer">
+        <div class="box">
+            <div class="title">LOGIN</div>
+            {!! Form::open(array("route" => "login", "method" => "POST")) !!}
+            <div class="input">
+                <label for="email">Username</label>
+                <input type="text" name="email" id="email" value="{{ old('email') }}"/>
+                <span class="spin"></span>
+            </div>
 
-@section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Login</div>
-                <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ route('login') }}">
-                        {{ csrf_field() }}
+            <div class="input">
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password">
+                <span class="spin"></span>
+            </div>
 
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
+            <div class="button login">
+                <button type="submit"><span>GO</span> <i class="fa fa-check"></i></button>
+            </div>
+            {!! Form::close() !!}
+            <a href="" class="pass-forgot">Forgot your password?</a>
 
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
+        </div>
 
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
+        <div class="overbox">
+            <div class="material-button alt-2"><span class="shape"></span></div>
 
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">Password</label>
+            <div class="title">REGISTER</div>
 
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" required>
+            <div class="input">
+                <label for="regname">Username</label>
+                <input type="text" name="regname" id="regname">
+                <span class="spin"></span>
+            </div>
 
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
+            <div class="input">
+                <label for="regpass">Password</label>
+                <input type="password" name="regpass" id="regpass">
+                <span class="spin"></span>
+            </div>
 
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember Me
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
+            <div class="input">
+                <label for="reregpass">Repeat Password</label>
+                <input type="password" name="reregpass" id="reregpass">
+                <span class="spin"></span>
+            </div>
 
-                        <div class="form-group">
-                            <div class="col-md-8 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Login
-                                </button>
-
-                                <a class="btn btn-link" href="{{ route('password.request') }}">
-                                    Forgot Your Password?
-                                </a>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+            <div class="button">
+                <button><span>NEXT</span></button>
             </div>
         </div>
     </div>
-</div>
-@endsection
+    {{--</form>--}}
+		<footer><a href="http://www.navin.comze.com/mybot" target="_blank"><img src="https://www.polymer-project.org/images/logos/p-logo.svg"></a>
+		  <p>You Gotta Love <a href="http://www.navin.comze.com/mybot" target="_blank">Navin</a></p>
+		</footer>
+		<script src="{{ asset('plugins/jquery.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/login/login_material.js') }}"></script>
+	</body>
+</html>
