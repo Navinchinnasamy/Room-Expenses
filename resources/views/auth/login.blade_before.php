@@ -10,8 +10,7 @@
     <link rel="stylesheet" href="{{ asset('css/login/style.css') }}">
     <script>
         window.Laravel = {
-        !!json_encode([
-            'csrfToken' = > csrf_token(),
+        !!json_encode(['csrfToken' = > csrf_token()
         ])
         !!
         }
