@@ -1,0 +1,8 @@
+/* >>> Form validation error messages */
+div[class^="error"] {
+    font-size: smaller;
+    margin-left: 17%;
+    color: red;
+}
+
+/* <<< Form validation error messages */
