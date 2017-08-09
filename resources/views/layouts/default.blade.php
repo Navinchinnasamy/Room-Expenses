@@ -27,7 +27,6 @@
     <link href="{{ asset('template/css/materialize.css') }}" type="text/css" rel="stylesheet" media="screen,projection">
     <link href="{{ asset('template/css/style.css') }}" type="text/css" rel="stylesheet" media="screen,projection">
     <link href="{{ asset('template/css/custom.css') }}" type="text/css" rel="stylesheet" media="screen,projection">
-    <link href="{{ asset('template/css/page-center.css') }}" type="text/css" rel="stylesheet" media="screen,projection">
 
     <!-- INCLUDED PLUGIN CSS ON THIS PAGE -->
     <link href="{{ asset('template/css/prism.css') }}" type="text/css" rel="stylesheet" media="screen,projection">
@@ -45,7 +44,7 @@
 			]) !!};
     </script>
 </head>
-<body class="cyan">
+<body>
 <!-- Start Page Loading -->
 <div id="loader-wrapper">
     <div id="loader"></div>
@@ -53,15 +52,33 @@
     <div class="loader-section section-right"></div>
 </div>
 <!-- End Page Loading -->
-<div id="login-page" class="row">
-    <div class="col s12 z-depth-4 card-panel">
-        @yield('form')
+
+@include('layouts.header')
+
+<!-- START MAIN -->
+<div id="main">
+    <!-- START WRAPPER -->
+    <div class="wrapper">
+    @include('layouts.leftsidebar')
+    <!-- START CONTENT -->
+        <section id="content">
+            @yield('content')
+        </section>
+        @include('layouts.rightsidebar')
     </div>
 </div>
 
-{{--<footer><a href="http://www.navin.comze.com/mybot" target="_blank"><img src="https://www.polymer-project.org/images/logos/p-logo.svg"></a>
-  <p>You Gotta Love <a href="http://www.navin.comze.com/mybot" target="_blank">Navin</a></p>
-</footer>--}}
+<!-- START FOOTER -->
+<footer class="mdl-mini-footer page-footer">
+    <div class="footer-copyright">
+        <div class="container">
+            <span>Copyright © 2017 <a class="grey-text text-lighten-4" href="http://navin.comze.com" target="_blank">Room</a> All rights reserved.</span>
+            <span class="right"> Design and Developed by <a class="grey-text text-lighten-4"
+                                                            href="http://navin.comze.com">Navin</a></span>
+        </div>
+    </div>
+</footer>
+<!-- END FOOTER -->
 
 <!-- jQuery Library -->
 <script type="text/javascript" src="{{ asset('template/js/jquery-1.11.2.min.js') }}"></script>
