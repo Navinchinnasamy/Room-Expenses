@@ -1,17 +1,13 @@
-@extends('layouts.default')
-@section('page_style')
-    <link href="{{ asset('template/js/plugins/data-tables/css/jquery.dataTables.min.css') }}" type="text/css"
-          rel="stylesheet" media="screen,projection">
-@endsection
+@extends('layouts.app')
 
 @section('content')
     <div class="container">
-        <div class="section">
-            <div class="table-datatables">
-                <h4 class="header">Purchase History</h4>
-                <div class="row">
-                    <div class="col s12 m12 32">
-                        <table id="data-table-row-grouping" class="responsive-table display" cellspacing="0">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Expenses</div>
+                    <div class="panel-body">
+                        <table class="table table-striped table-hover table-responsive">
                             <thead>
                             <tr>
                                 <th>S.No.</th>
@@ -36,17 +32,17 @@
                                 </tr>
                             @endforeach
                             </tbody>
+                            <tfoot>
+                            <tr>
+                                <th colspan="3"></th>
+                                <th> Total :</th>
+                                <th>{{ $total }}</th>
+                            </tr>
+                            </tfoot>
                         </table>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-@endsection
-
-@section('page_script')
-    <!-- data-tables -->
-    <script type="text/javascript"
-            src="{{ asset('template/js/plugins/data-tables/js/jquery.dataTables.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('template/js/plugins/data-tables/data-tables-script.js') }}"></script>
 @endsection

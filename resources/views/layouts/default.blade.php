@@ -34,6 +34,7 @@
           rel="stylesheet" media="screen,projection">
     <link href="{{ asset('template/js/plugins/chartist-js/chartist.min.css') }}" type="text/css" rel="stylesheet"
           media="screen,projection">
+@yield('page_style')
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -95,5 +96,6 @@
 
 <!--plugins.js - Some Specific JS codes for Plugin Settings-->
 <script type="text/javascript" src="{{ asset('template/js/plugins.js') }}"></script>
+@yield('page_script')
 </body>
 </html>

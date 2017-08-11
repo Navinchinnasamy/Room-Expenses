@@ -3,19 +3,19 @@ $(document).ready(function () {
 
     var table = $('#data-table-row-grouping').DataTable({
         "columnDefs": [
-            {"visible": false, "targets": 2}
+            {"visible": false, "targets": 1}
         ],
-        "order": [[2, 'asc']],
+        "order": [[0, 'asc']],
         "displayLength": 25,
         "drawCallback": function (settings) {
             var api = this.api();
             var rows = api.rows({page: 'current'}).nodes();
             var last = null;
 
-            api.column(2, {page: 'current'}).data().each(function (group, i) {
+            api.column(1, {page: 'current'}).data().each(function (group, i) {
                 if (last !== group) {
                     $(rows).eq(i).before(
-                        '<tr class="group"><td colspan="5">' + group + '</td></tr>'
+                        '<tr class="group"><td colspan="4">' + group + '</td></tr>'
                     );
 
                     last = group;
