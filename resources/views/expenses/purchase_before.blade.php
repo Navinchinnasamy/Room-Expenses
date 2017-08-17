@@ -1,4 +1,4 @@
-@extends('layouts.default')
+@extends('layouts.app')
 
 @section('content')
 <div class="container">
@@ -18,7 +18,7 @@
 							</ul>
 						</div>
 					@endif
-
+					
 					{!! Form::open(array('route' => 'expense.store', 'method' => 'POST')) !!}
                     <!-- <form class="form-horizontal" role="form" method="POST" action="{{ route('expense.store') }}"> -->
 						{{ csrf_field() }}
