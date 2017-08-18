@@ -20,3 +20,5 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('expense', 'ExpensesController');
+Route::get('/expense/general', 'ExpensesController@general')->name('expense.general');
+Route::post('/expense/general', 'ExpensesController@general');

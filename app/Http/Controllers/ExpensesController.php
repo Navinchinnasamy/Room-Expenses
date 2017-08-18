@@ -121,4 +121,15 @@ class ExpensesController extends Controller
     {
         //
     }
+
+    public function general()
+    {
+        echo "ghdgfhdfhghdfg";
+        exit;
+        $expenses = array();
+        /*if(!empty($request->input())){
+            echo "<pre>"; print_r($request->input()); exit;
+        }*/
+        return View::make('expenses.general'); //->with('expenses', $expenses);
+    }
 }

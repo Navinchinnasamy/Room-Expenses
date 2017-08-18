@@ -17,42 +17,41 @@
 
                 <div class="col s12 m12 l6">
                     <div class="card-panel">
-                        <h4 class="header2">Purchases</h4>
+                        <h4 class="header2">General Expenses</h4>
                         <div class="row">
-                            {!! Form::open(array('route' => 'expense.store', 'method' => 'POST', 'class' => 'col s12')) !!}
+                            {!! Form::open(array('route' => 'expense.general', 'method' => 'POST', 'class' => 'col s12')) !!}
                             {{ csrf_field() }}
-                            <input type="hidden" name="purchased_by" id="purchased_by" value="{{ $data['id'] }}"/>
                             <div class="row">
                                 <div class="input-field col s12">
                                     <i class="mdi-action-account-circle prefix"></i>
-                                    <input id="description" name="description"
-                                           value="{{ old('description') }}" type="text" class="validate">
-                                    <label for="description">Description</label>
+                                    <input id="room_rent" name="room_rent"
+                                           value="{{ old('room_rent') }}" type="text" class="validate">
+                                    <label for="room_rent">Room Rent</label>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="input-field col s12">
                                     <i class="mdi-communication-email prefix"></i>
-                                    <input id="amount" type="text" name="amount" value="{{ old('amount') }}"
+                                    <input id="eb_bill" type="text" name="eb_bill" value="{{ old('eb_bill') }}"
                                            class="validate">
-                                    <label for="amount">Amount</label>
+                                    <label for="eb_bill">Amount</label>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="input-field col s12">
-                                    <i class="mdi-action-question-answer prefix"></i>
-                                    <input class="datepicker" id="purchased_at"
-                                           name="purchased_at" value="{{ old('purchased_at') }}" type="date"
+                                    <i class="mdi-communication-email prefix"></i>
+                                    <input id="cleaning_charge" type="text" name="cleaning_charge"
+                                           value="{{ old('cleaning_charge') }}"
                                            class="validate">
-                                    <label for="purchased_at">Purchased At</label>
+                                    <label for="cleaning_charge">Cleaning Charge</label>
                                 </div>
-                                <div class="row">
-                                    <div class="input-field col s12">
-                                        <button class="btn cyan waves-effect waves-light right" type="submit"
-                                                name="action">Submit
-                                            <i class="mdi-content-send right"></i>
-                                        </button>
-                                    </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <button class="btn cyan waves-effect waves-light right" type="submit"
+                                            name="action">Submit
+                                        <i class="mdi-content-send right"></i>
+                                    </button>
                                 </div>
                             </div>
                             {!! Form::close() !!}
