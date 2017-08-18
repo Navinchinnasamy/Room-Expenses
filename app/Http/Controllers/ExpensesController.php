@@ -14,7 +14,7 @@ class ExpensesController extends Controller
     {
         $this->middleware('auth');
     }
-	
+
     /**
      * Display a listing of the resource.
      *
@@ -26,8 +26,8 @@ class ExpensesController extends Controller
 		$expenses = DB::table('expenses')
             ->leftJoin('users', 'users.id', '=', 'expenses.purchased_by')
             ->get();
-			
-		return View::make('expenses.expenses')->with('expenses', $expenses);
+
+        return View::make('expenses.expenses')->with('expenses', $expenses);
     }
 
     /**
@@ -40,11 +40,11 @@ class ExpensesController extends Controller
         //
 		// Get the currently authenticated user...
 		$user = Auth::user();
-		
-		// Get the currently authenticated user's ID...
+
+        // Get the currently authenticated user's ID...
 		$id = Auth::id();
-		
-		// return view('expenses.purchase'); -- no parameter passed to view.
+
+        // return view('expenses.purchase'); -- no parameter passed to view.
 		$data = array(
 			'id' => $id,
 			'name' => $user->name,
@@ -66,20 +66,15 @@ class ExpensesController extends Controller
 			'description' => 'required',
 			'amount' => 'required'
 		]);
-		
-		$desc = $request->input('description');
-		$amt = $request->input('amount');
-		$purchased_at = $request->input('purchased_at');
-		$purchased_by = $request->input('purchased_by');
-		
-		$exp = new Expense;
+
+        $exp = new Expense;
 		$exp->description = $request->input('description');
 		$exp->amount = $request->input('amount');
-		$exp->purchased_at = $request->input('purchased_at');
+        $exp->purchased_at = $request->input('purchased_at_submit');
 		$exp->purchased_by = $request->input('purchased_by');
 		$exp->save();
-		
-		return redirect()->route('expense.index')->with('success', 'Entry created successfully');
+
+        return redirect()->route('expense.index')->with('success', 'Entry created successfully');
     }
 
     /**

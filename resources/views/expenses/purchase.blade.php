@@ -1,73 +1,65 @@
 @extends('layouts.default')
 
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Purchase</div>
+    <div class="container">
+        <div class="section">
+            <div class="row">
+                @if (count($errors) > 0)
+                    <div class="alert alert-danger">
+                        <strong>Whoops!</strong> There were some problems with your input. <br/><br/>
+                        <ul>
+                            $foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                            $endforeach
+                        </ul>
+                    </div>
+                @endif
 
-                <div class="panel-body">
-					@if (count($errors) > 0)
-						<div class="alert alert-danger">
-							<strong>Whoops!</strong> There were some problems with your input. <br/><br/>
-							<ul>
-								$foreach ($errors->all() as $error)
-									<li>{{ $error }}</li>
-								$endforeach
-							</ul>
-						</div>
-					@endif
-
-					{!! Form::open(array('route' => 'expense.store', 'method' => 'POST')) !!}
-                    <!-- <form class="form-horizontal" role="form" method="POST" action="{{ route('expense.store') }}"> -->
-						{{ csrf_field() }}
-						<input type="hidden" name="purchased_by" id="purchased_by" value="{{ $data['id'] }}" />
-						<div class="form-group{{ $errors->has('description') ? ' has-error' : '' }}">
-                            <label for="description" class="col-md-4 control-label">Description</label>
-                            <div class="col-md-6">
-                                <input id="description" type="text" class="form-control" name="description" value="{{ old('description') }}" required autofocus>
-                                @if ($errors->has('description'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('description') }}</strong>
-                                    </span>
-                                @endif
+                <div class="col s12 m12 l6">
+                    <div class="card-panel">
+                        <h4 class="header2">Purchases</h4>
+                        <div class="row">
+                            {!! Form::open(array('route' => 'expense.store', 'method' => 'POST', 'class' => 'col s12')) !!}
+                            {{ csrf_field() }}
+                            <input type="hidden" name="purchased_by" id="purchased_by" value="{{ $data['id'] }}"/>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <i class="mdi-action-account-circle prefix"></i>
+                                    <input placeholder="Description" id="description" name="description"
+                                           value="{{ old('description') }}" type="text" class="validate">
+                                    <label for="description">Description</label>
+                                </div>
                             </div>
-                        </div>
-						<div class="form-group{{ $errors->has('amount') ? ' has-error' : '' }}">
-                            <label for="amount" class="col-md-4 control-label">Amount</label>
-                            <div class="col-md-6">
-                                <input id="amount" type="text" class="form-control" name="amount" value="{{ old('amount') }}" required autofocus>
-                                @if ($errors->has('amount'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('amount') }}</strong>
-                                    </span>
-                                @endif
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <i class="mdi-communication-email prefix"></i>
+                                    <input id="amount" type="text" name="amount" value="{{ old('amount') }}"
+                                           class="validate">
+                                    <label for="amount">Amount</label>
+                                </div>
                             </div>
-                        </div>
-						<div class="form-group{{ $errors->has('purchased_at') ? ' has-error' : '' }}">
-                            <label for="purchased_at" class="col-md-4 control-label">Purchased At</label>
-                            <div class="col-md-6">
-                                <input id="purchased_at" type="text" class="form-control" name="purchased_at" value="{{ old('purchased_at') }}" required autofocus>
-                                @if ($errors->has('purchased_at'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('purchased_at') }}</strong>
-                                    </span>
-                                @endif
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <i class="mdi-action-question-answer prefix"></i>
+                                    <input placeholder="Purchased at" class="datepicker" id="purchased_at"
+                                           name="purchased_at" value="{{ old('purchased_at') }}" type="date"
+                                           class="validate">
+                                    <label for="purchased_at">Purchased At</label>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <button class="btn cyan waves-effect waves-light right" type="submit"
+                                                name="action">Submit
+                                            <i class="mdi-content-send right"></i>
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
+                            {!! Form::close() !!}
                         </div>
-						<div class="form-group">
-                            <div class="col-md-8 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Save
-                                </button>
-                            </div>
-                        </div>
-					<!-- </form> -->
-					{!! Form::close() !!}
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 @endsection
