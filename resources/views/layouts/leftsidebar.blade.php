@@ -38,7 +38,7 @@
         <li class="bold"><a href="{{ url('/expense') }}" class="waves-effect waves-cyan"><i
                         class="mdi-editor-insert-invitation"></i> Purchase History </a>
         </li>
-        <li class="bold"><a href="{{ route('expense.general') }}" class="waves-effect waves-cyan"><i
+        <li class="bold"><a href="{{ route('general') }}" class="waves-effect waves-cyan"><i
                         class="mdi-editor-insert-invitation"></i> General Expenses </a>
         </li>
         <li class="bold"><a href="app-calendar.html" class="waves-effect waves-cyan"><i

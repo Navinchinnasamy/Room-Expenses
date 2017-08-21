@@ -22,11 +22,7 @@ class ExpensesController extends Controller
      */
     public function index()
     {
-        //
-		$expenses = DB::table('expenses')
-            ->leftJoin('users', 'users.id', '=', 'expenses.purchased_by')
-            ->get();
-
+        $expenses = Expense::with('user')->get();
         return View::make('expenses.expenses')->with('expenses', $expenses);
     }
 
@@ -122,14 +118,22 @@ class ExpensesController extends Controller
         //
     }
 
-    public function general()
+    public function general(Request $request)
     {
-        echo "ghdgfhdfhghdfg";
-        exit;
-        $expenses = array();
-        /*if(!empty($request->input())){
-            echo "<pre>"; print_r($request->input()); exit;
-        }*/
+        if (!empty($request->input())) {
+            // Get general expense for current month
+            $expenses = Expense::where("purchased_at", " ILIKE ", "CURRENT_DATE")->get();
+            $count = $expenses->count();
+            if ($count) {
+                // If already exists for current month update the values
+                echo "Already exists";
+            } else {
+                // If not exists for current month insert the values
+                echo "Not yet created";
+            }
+            exit;
+        }
+
         return View::make('expenses.general'); //->with('expenses', $expenses);
     }
 }

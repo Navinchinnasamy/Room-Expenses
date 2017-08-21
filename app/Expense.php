@@ -8,8 +8,8 @@ class Expense extends Model
 {
     //
 	protected $table = 'expenses';
-	
+
 	public function user(){
-		return $this->belongsTo('App\User', 'id', 'purchased_by');
+        return $this->belongsTo('App\User', 'purchased_by', 'id');
 	}
 }

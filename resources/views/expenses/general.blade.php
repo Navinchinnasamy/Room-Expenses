@@ -19,7 +19,7 @@
                     <div class="card-panel">
                         <h4 class="header2">General Expenses</h4>
                         <div class="row">
-                            {!! Form::open(array('route' => 'expense.general', 'method' => 'POST', 'class' => 'col s12')) !!}
+                            {!! Form::open(array('route' => 'general', 'method' => 'POST', 'class' => 'col s12')) !!}
                             {{ csrf_field() }}
                             <div class="row">
                                 <div class="input-field col s12">
@@ -34,7 +34,7 @@
                                     <i class="mdi-communication-email prefix"></i>
                                     <input id="eb_bill" type="text" name="eb_bill" value="{{ old('eb_bill') }}"
                                            class="validate">
-                                    <label for="eb_bill">Amount</label>
+                                    <label for="eb_bill">EB Bill</label>
                                 </div>
                             </div>
                             <div class="row">
@@ -48,8 +48,8 @@
                             </div>
                             <div class="row">
                                 <div class="input-field col s12">
-                                    <button class="btn cyan waves-effect waves-light right" type="submit"
-                                            name="action">Submit
+                                    <button class="btn cyan waves-effect waves-light right" type="submit">
+                                        Submit
                                         <i class="mdi-content-send right"></i>
                                     </button>
                                 </div>

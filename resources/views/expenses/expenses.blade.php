@@ -29,7 +29,7 @@
                                 @php $total += $exp->amount @endphp
                                 <tr>
                                     <td>{{ ++$key }}</td>
-                                    <td>{{ $exp->name }}</td>
+                                    <td>{{ $exp->user->name }}</td>
                                     <td>{{ date('d/m/Y', strtotime($exp->purchased_at)) }}</td>
                                     <td>{{ $exp->description }}</td>
                                     <td>{{ $exp->amount }}</td>
