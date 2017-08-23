@@ -4,7 +4,7 @@
         <li class="user-details cyan darken-2">
             <div class="row">
                 <div class="col col s4 m4 l4">
-                    <img src="{{ asset('template/images/avatar.jpg') }}" alt=""
+                    <img src="{{ asset('template/images/avatar.png') }}" alt=""
                          class="circle responsive-img valign profile-image">
                 </div>
                 <div class="col col s8 m8 l8">
@@ -33,16 +33,16 @@
                         class="mdi-action-dashboard"></i> Dashboard</a>
         </li>
         <li class="bold"><a href="{{ url('/expense/create') }}" class="waves-effect waves-cyan"><i
-                        class="mdi-communication-email"></i> Expenses Add </a>
+                        class="mdi-action-add-shopping-cart"></i> Expenses Add </a>
         </li>
         <li class="bold"><a href="{{ url('/expense') }}" class="waves-effect waves-cyan"><i
-                        class="mdi-editor-insert-invitation"></i> Purchase History </a>
+                        class="mdi-action-history"></i> Purchase History </a>
         </li>
         <li class="bold"><a href="{{ route('general') }}" class="waves-effect waves-cyan"><i
-                        class="mdi-editor-insert-invitation"></i> General Expenses </a>
+                        class="mdi-editor-attach-money"></i> General Expenses </a>
         </li>
         <li class="bold"><a href="app-calendar.html" class="waves-effect waves-cyan"><i
-                        class="mdi-editor-insert-invitation"></i> Notifications </a>
+                        class="mdi-notification-system-update"></i> Notifications </a>
         </li>
     </ul>
     <a href="#" data-activates="slide-out"

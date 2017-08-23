@@ -23,7 +23,7 @@
                             {{ csrf_field() }}
                             <div class="row">
                                 <div class="input-field col s12">
-                                    <i class="mdi-action-account-circle prefix"></i>
+                                    <i class="mdi-action-home prefix"></i>
                                     <input id="room_rent" name="room_rent"
                                            value="@if (isset($expenses[0]) && isset($expenses[0]->amount)) {{ $expenses[0]->amount }} @endif"
                                            type="text" class="validate">
@@ -32,7 +32,7 @@
                             </div>
                             <div class="row">
                                 <div class="input-field col s12">
-                                    <i class="mdi-communication-email prefix"></i>
+                                    <i class="mdi-action-receipt prefix"></i>
                                     <input id="eb_bill" type="text" name="eb_bill"
                                            value="@if (isset($expenses[1]) && isset($expenses[1]->amount)) {{ $expenses[1]->amount }} @endif"
                                            class="validate">
@@ -41,11 +41,20 @@
                             </div>
                             <div class="row">
                                 <div class="input-field col s12">
-                                    <i class="mdi-communication-email prefix"></i>
+                                    <i class="mdi-editor-format-paint prefix"></i>
                                     <input id="cleaning_charge" type="text" name="cleaning_charge"
                                            value="@if (isset($expenses[2]) && isset($expenses[2]->amount)) {{ $expenses[2]->amount }} @endif"
                                            class="validate">
                                     <label for="cleaning_charge">Cleaning Charge</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <i class="mdi-action-settings-input-hdmi prefix"></i>
+                                    <input id="cable_charge" type="text" name="cable_charge"
+                                           value="@if (isset($expenses[3]) && isset($expenses[3]->amount)) {{ $expenses[3]->amount }} @endif"
+                                           class="validate">
+                                    <label for="cable_charge">Cable Charge</label>
                                 </div>
                             </div>
                             <div class="row">

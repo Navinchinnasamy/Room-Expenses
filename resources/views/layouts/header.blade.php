@@ -22,8 +22,8 @@
                                     class="mdi-social-notifications"></i></a>
                     </li>
                     <!-- Dropdown Trigger -->
-                    <li><a href="#" data-activates="chat-out"
-                           class="waves-effect waves-block waves-light chat-collapse"><i
+                    <li class="hide"><a href="#" data-activates="chat-out"
+                                        class="waves-effect waves-block waves-light chat-collapse"><i
                                     class="mdi-communication-chat"></i></a>
                     </li>
                 </ul>

@@ -125,29 +125,31 @@ class ExpensesController extends Controller
         $expenses = GeneralExpenses::where("expense_month", "=", $cdate)->get(); //->toSql();
 //        dd($expenses); exit;
         if (!empty($request->input())) {
-            // Get general expense for current month
-            $count = $expenses->count();
-            if ($count) {
-                // If already exists for current month update the values
-                foreach ($request->input() as $column => $value) {
-                    if ($column == "_token") {
-                        continue;
-                    }
-                    $GeneralExpenses = GeneralExpenses::where('description', '=', $column)->where('expense_month', '=', $cdate)->update(['amount' => $value]);
+            foreach ($request->input() as $column => $value) {
+                if ($column == "_token") {
+                    continue;
                 }
-            } else {
-                // If not exists for current month insert the values
-                foreach ($request->input() as $column => $value) {
-                    if ($column == "_token") {
-                        continue;
+                // Get general expense for current month
+                $existing = GeneralExpenses::where("expense_month", "=", $cdate)->where('description', '=', $column)->get();
+                $count = $existing->count();
+                if ($count) {
+                    // If already exists for current month update the values
+                    $GeneralExpenses = GeneralExpenses::where('description', '=', $column)->where('expense_month', '=', $cdate)->update(['amount' => $value]);
+                } else {
+                    // If not exists for current month insert the values
+                    foreach ($request->input() as $column => $value) {
+                        if ($column == "_token") {
+                            continue;
+                        }
+                        $GeneralExpenses = new GeneralExpenses;
+                        $GeneralExpenses->description = $column;
+                        $GeneralExpenses->amount = $value;
+                        $GeneralExpenses->expense_month = date('Y-m-01');
+                        $GeneralExpenses->save();
                     }
-                    $GeneralExpenses = new GeneralExpenses;
-                    $GeneralExpenses->description = $column;
-                    $GeneralExpenses->amount = $value;
-                    $GeneralExpenses->expense_month = date('Y-m-01');
-                    $GeneralExpenses->save();
                 }
             }
+
             return redirect()->route('general')->with('success', 'Entry successfull');
         }
 
