@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Expense;
+use App\GeneralExpenses;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -120,20 +121,36 @@ class ExpensesController extends Controller
 
     public function general(Request $request)
     {
+        $cdate = date('Y-m-01');
+        $expenses = GeneralExpenses::where("expense_month", "=", $cdate)->get(); //->toSql();
+//        dd($expenses); exit;
         if (!empty($request->input())) {
             // Get general expense for current month
-            $expenses = Expense::where("purchased_at", " ILIKE ", "CURRENT_DATE")->get();
             $count = $expenses->count();
             if ($count) {
                 // If already exists for current month update the values
-                echo "Already exists";
+                foreach ($request->input() as $column => $value) {
+                    if ($column == "_token") {
+                        continue;
+                    }
+                    $GeneralExpenses = GeneralExpenses::where('description', '=', $column)->where('expense_month', '=', $cdate)->update(['amount' => $value]);
+                }
             } else {
                 // If not exists for current month insert the values
-                echo "Not yet created";
+                foreach ($request->input() as $column => $value) {
+                    if ($column == "_token") {
+                        continue;
+                    }
+                    $GeneralExpenses = new GeneralExpenses;
+                    $GeneralExpenses->description = $column;
+                    $GeneralExpenses->amount = $value;
+                    $GeneralExpenses->expense_month = date('Y-m-01');
+                    $GeneralExpenses->save();
+                }
             }
-            exit;
+            return redirect()->route('general')->with('success', 'Entry successfull');
         }
 
-        return View::make('expenses.general'); //->with('expenses', $expenses);
+        return View::make('expenses.general')->with('expenses', $expenses);
     }
 }
