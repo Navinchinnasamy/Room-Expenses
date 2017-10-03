@@ -30,7 +30,7 @@
                 <label for="password">Password</label>
             </div>
     </div>
-    <div class="row">
+    <div class="row hide">
         <div class="input-field col s12 m12 l12  login-text">
             <input type="checkbox" id="remember" name="remember" {{ old('remember') ? 'checked' : '' }} />
             <label for="remember">Remember me</label>
