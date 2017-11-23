@@ -3,7 +3,7 @@ $(document).ready(function () {
 
     var table = $('#data-table-row-grouping').DataTable({
         "columnDefs": [
-            {"visible": false, "targets": 1}
+            {"visible": false, "targets": [3]}
         ],
         "order": [[0, 'asc']],
         "displayLength": 25,
@@ -12,10 +12,10 @@ $(document).ready(function () {
             var rows = api.rows({page: 'current'}).nodes();
             var last = null;
 
-            api.column(1, {page: 'current'}).data().each(function (group, i) {
+            api.column(3, {page: 'current'}).data().each(function (group, i) {
                 if (last !== group) {
                     $(rows).eq(i).before(
-                        '<tr class="group"><td colspan="4">' + group + '</td></tr>'
+                        '<tr class="group"><td colspan="5">' + group + '</td></tr>'
                     );
 
                     last = group;

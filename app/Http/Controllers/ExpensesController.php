@@ -23,7 +23,7 @@ class ExpensesController extends Controller
      */
     public function index()
     {
-        $expenses = Expense::with('user')->get();
+        $expenses = Expense::with('user')->orderBy('id', 'DESC')->get();
         return View::make('expenses.expenses')->with('expenses', $expenses);
     }
 

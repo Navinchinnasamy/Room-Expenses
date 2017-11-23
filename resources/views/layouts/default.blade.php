@@ -32,8 +32,6 @@
     <link href="{{ asset('template/css/prism.css') }}" type="text/css" rel="stylesheet" media="screen,projection">
     <link href="{{ asset('template/js/plugins/perfect-scrollbar/perfect-scrollbar.css') }}" type="text/css"
           rel="stylesheet" media="screen,projection">
-    <link href="{{ asset('template/js/plugins/chartist-js/chartist.min.css') }}" type="text/css" rel="stylesheet"
-          media="screen,projection">
 @yield('page_style')
 
     <!-- CSRF Token -->
@@ -90,9 +88,6 @@
 <!--scrollbar-->
 <script type="text/javascript"
         src="{{ asset('template/js/plugins/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
-<!-- chartist -->
-<script type="text/javascript"
-        src="{{ asset('template/js/plugins/chartist-js/chartist.min.js') }}"></script>
 
 <!--plugins.js - Some Specific JS codes for Plugin Settings-->
 <script type="text/javascript" src="{{ asset('template/js/plugins.js') }}"></script>

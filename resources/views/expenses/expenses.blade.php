@@ -17,6 +17,7 @@
                                 <th>S.No.</th>
                                 <th>Purchased By</th>
                                 <th>Purchased At</th>
+                                <th>Purchased Month</th>
                                 <th>Description</th>
                                 <th>Amount</th>
                             </tr>
@@ -31,6 +32,7 @@
                                     <td>{{ ++$key }}</td>
                                     <td>{{ $exp->user->name }}</td>
                                     <td>{{ date('d/m/Y', strtotime($exp->purchased_at)) }}</td>
+                                    <td>{{ date('M', strtotime($exp->purchased_at)) }}</td>
                                     <td>{{ $exp->description }}</td>
                                     <td>{{ $exp->amount }}</td>
                                 </tr>
