@@ -22,4 +22,4 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('expense', 'ExpensesController');
 Route::get('general', 'ExpensesController@general')->name('general');
 Route::post('general', 'ExpensesController@general');
-Route::get('notification', 'ExpensesController@general')->name('notification');
+Route::get('notification', 'ExpensesController@notification')->name('notification');

@@ -5,7 +5,7 @@
         <nav class="cyan">
             <div class="nav-wrapper">
                 <h1 class="logo-wrapper"><a href="{{ url('/home') }}" class="brand-logo darken-1"><img
-                                src="{{ asset('template/images/materialize-logo.png') }}" alt="materialize logo"></a>
+                                src="{{ asset('template/images/header-logo.png') }}" alt="materialize logo"></a>
                     <span class="logo-text">Room Expenses</span></h1>
                 <ul class="right hide-on-med-and-down">
                     <li class="search-out">

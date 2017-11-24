@@ -155,4 +155,9 @@ class ExpensesController extends Controller
 
         return View::make('expenses.general')->with('expenses', $expenses);
     }
+
+    public function notification(Request $request)
+    {
+        return View::make('notification');
+    }
 }

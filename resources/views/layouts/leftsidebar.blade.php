@@ -23,25 +23,30 @@
                         </li>
                     </ul>
                     <a class="btn-flat dropdown-button waves-effect waves-light white-text profile-btn" href="#"
-                       data-activates="profile-dropdown">John Doe<i
+                       data-activates="profile-dropdown">{{ Auth::user()->name }}<i
                                 class="mdi-navigation-arrow-drop-down right"></i></a>
-                    <p class="user-roal">Administrator</p>
+                    <p class="user-roal"></p>
                 </div>
             </div>
         </li>
-        <li class="bold"><a href="{{ url('/home') }}" class="waves-effect waves-cyan"><i
-                        class="mdi-action-dashboard"></i> Dashboard</a>
+        <li class="bold {{ Request::path() == 'home' ? 'active' : '' }}"><a href="{{ url('/home') }}"
+                                                                            class="waves-effect waves-cyan"><i
+                        class="mdi-action-dashboard"></i>Dashboard</a>
         </li>
-        <li class="bold"><a href="{{ url('/expense/create') }}" class="waves-effect waves-cyan"><i
+        <li class="bold {{ Request::path() == 'expense/create' ? 'active' : '' }}"><a
+                    href="{{ url('/expense/create') }}" class="waves-effect waves-cyan"><i
                         class="mdi-action-add-shopping-cart"></i> Expenses Add </a>
         </li>
-        <li class="bold"><a href="{{ url('/expense') }}" class="waves-effect waves-cyan"><i
+        <li class="bold {{ Request::path() == 'expense' ? 'active' : '' }}"><a href="{{ url('/expense') }}"
+                                                                               class="waves-effect waves-cyan"><i
                         class="mdi-action-history"></i> Purchase History </a>
         </li>
-        <li class="bold"><a href="{{ route('general') }}" class="waves-effect waves-cyan"><i
+        <li class="bold {{ Request::path() == 'general' ? 'active' : '' }}"><a href="{{ route('general') }}"
+                                                                               class="waves-effect waves-cyan"><i
                         class="mdi-editor-attach-money"></i> General Expenses </a>
         </li>
-        <li class="bold"><a href="app-calendar.html" class="waves-effect waves-cyan"><i
+        <li class="bold {{ Request::path() == 'notification' ? 'active' : '' }}"><a href="{{ route('notification') }}"
+                                                                                    class="waves-effect waves-cyan"><i
                         class="mdi-notification-system-update"></i> Notifications </a>
         </li>
     </ul>
