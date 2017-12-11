@@ -23,3 +23,4 @@ Route::resource('expense', 'ExpensesController');
 Route::get('general', 'ExpensesController@general')->name('general');
 Route::post('general', 'ExpensesController@general');
 Route::get('notification', 'ExpensesController@notification')->name('notification');
+Route::post('pay-rent', 'HomeController@payRent')->name('pay-rent');
