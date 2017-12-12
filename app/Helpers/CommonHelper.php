@@ -14,6 +14,7 @@ class CommonHelper
     public static function moneyFormatIndia($num)
     {
         $explrestunits = "";
+        $num = explode('.', $num)[0];
         if (strlen($num) > 3) {
             $lastthree = substr($num, strlen($num) - 3, strlen($num));
             $restunits = substr($num, 0, strlen($num) - 3); // extracts the last three digits

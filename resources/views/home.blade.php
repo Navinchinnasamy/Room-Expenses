@@ -91,7 +91,6 @@
                     </div>
                 </div>
             @endforeach
-			]
 			
 			{!! Form::open(array('route' => 'pay-rent', 'method' => 'POST', 'class' => 'col s12', 'id' => 'pay_rent_form')) !!}
 				{{ csrf_field() }}
