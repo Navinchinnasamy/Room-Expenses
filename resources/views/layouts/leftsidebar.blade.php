@@ -1,3 +1,5 @@
+@php $role = Auth::user()->role; @endphp
+
 <!-- START LEFT SIDEBAR NAV-->
 <aside id="left-sidebar-nav">
     <ul id="slide-out" class="side-nav fixed leftside-navigation">
@@ -41,14 +43,19 @@
                                                                                class="waves-effect waves-cyan"><i
                         class="mdi-action-history"></i> Purchase History </a>
         </li>
-        <li class="bold {{ Request::path() == 'general' ? 'active' : '' }}"><a href="{{ route('general') }}"
-                                                                               class="waves-effect waves-cyan"><i
-                        class="mdi-editor-attach-money"></i> General Expenses </a>
-        </li>
-        <li class="bold {{ Request::path() == 'notification' ? 'active' : '' }}"><a href="{{ route('notification') }}"
-                                                                                    class="waves-effect waves-cyan"><i
-                        class="mdi-notification-system-update"></i> Notifications </a>
-        </li>
+        @if($role === 1)
+            <li class="bold {{ Request::path() == 'general' ? 'active' : '' }}"><a href="{{ route('general') }}"
+                                                                                   class="waves-effect waves-cyan"><i
+                            class="mdi-editor-attach-money"></i> General Expenses </a>
+            </li>
+            <li class="bold {{ Request::path() == 'notification' ? 'active' : '' }}"><a href="{{ route('notification') }}"
+                                                                                        class="waves-effect waves-cyan"><i
+                            class="mdi-notification-system-update"></i> Notifications </a>
+            </li>
+            <li class="bold {{Request::path() == 'register' ? 'active' : '' }}"><a href="{{ route('add-user') }}"
+                                                                                   class="waves-effect waves-cyan"><i
+                            class="mdi-action-verified-user"></i> Add User </a></li>
+        @endif
     </ul>
     <a href="#" data-activates="slide-out"
        class="sidebar-collapse btn-floating btn-medium waves-effect waves-light hide-on-large-only darken-2"><i

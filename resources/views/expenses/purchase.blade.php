@@ -27,7 +27,19 @@
                         <div class="row">
                             {!! Form::open(array('route' => 'expense.store', 'files' => true, 'method' => 'POST', 'class' => 'col s12')) !!}
                             {{ csrf_field() }}
-                            <input type="hidden" name="purchased_by" id="purchased_by" value="{{ $data['id'] }}"/>
+                            {{--<input type="hidden" name="purchased_by" id="purchased_by" value="{{ $data['id'] }}"/>--}}
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <i class="mdi-social-person-outline prefix"></i>
+                                    <select id="purchased_by" name="purchased_by" class="input-field validate">
+                                        @foreach($data['users'] as $usr)
+                                            @php $selected = ($usr->id == old('purchased_by')) ? "selected" : ""; @endphp
+                                            <option value="{{ $usr->id }}" {{ $selected }}>{{ $usr->name  }}</option>
+                                        @endforeach
+                                    </select>
+                                    <label for="name">Name</label>
+                                </div>
+                            </div>
                             <div class="row">
                                 <div class="input-field col s12">
                                     <i class="mdi-action-description prefix"></i>

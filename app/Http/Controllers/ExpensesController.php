@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Expense;
 use App\GeneralExpenses;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -41,11 +42,13 @@ class ExpensesController extends Controller
         // Get the currently authenticated user's ID...
 		$id = Auth::id();
 
+        $users = User::all();
         // return view('expenses.purchase'); -- no parameter passed to view.
 		$data = array(
 			'id' => $id,
 			'name' => $user->name,
-			'email' => $user->email
+            'email' => $user->email,
+            'users' => $users
 		);
 		return View::make('expenses.purchase')->with('data', $data);  // -- $data is passed along with view to view file.
     }
@@ -67,8 +70,11 @@ class ExpensesController extends Controller
 
         $user = Auth::user();
         $user_name = preg_replace('/ /', '_', $user->name);
-        $file_name = $user_name . '_' . time() . '.' . $request->bills->getClientOriginalExtension();
-        $request->bills->move(public_path('bills'), $file_name);
+        $file_name = "";
+        if (!empty($request->bills)) {
+            $file_name = $user_name . '_' . time() . '.' . $request->bills->getClientOriginalExtension();
+            $request->bills->move(public_path('bills'), $file_name);
+        }
 
         $exp = new Expense;
 		$exp->description = $request->input('description');

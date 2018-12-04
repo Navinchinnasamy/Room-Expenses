@@ -19,9 +19,10 @@ class Expenses extends Migration
 			$table->integer('purchased_by');
 			$table->string('description');
 			$table->float('amount');
-			$table->date('purchased_at');
-			$table->timestamps();
-		});
+            $table->date('purchased_at');
+            $table->text('bills');
+            $table->timestamps();
+        });
     }
 
     /**
